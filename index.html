@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<title>抽奖转盘</title>
+		<link rel="stylesheet" href="./css/basic.css">
+		<style type="text/css">
+			#timeDiv {
+				width: 100%;
+				float: left;
+				margin: 10px 0 0 0;
+				font-size: 16px;
+			}
+			
+			#timeDiv>b {
+				padding: 10px;
+				background-color: #111;
+				color: #FFEB66;
+			}
+			
+			#nameListDiv {
+				width: 100%;
+				float: left;
+				background-image: url(./images/4_2.png);
+				background-size: 100% 100%;
+				color: #FFF;
+				font-size: 1.4rem;
+			}
+			
+			#nameListDiv>ul {
+				width: 100%;
+				float: left;
+				text-align: center;
+			}
+			
+			#nameListDiv>ul>li {
+				width: 66%;
+				margin: 0 17%;
+				padding: 5px 0;
+				float: left;
+				text-align: center;
+			}
+			
+			.li2 {
+				background-image: url(./images/libg.png);
+				background-size: 100% 100%;
+			}
+			
+			#subDiv_01 {
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				left: 0px;
+				top: 0px;
+				display: none;
+			}
+
+			#subDiv_02 {
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				left: 0px;
+				top: 0px;	
+				display: none;
+			}
+			
+			#phone {
+				width: 90%;
+				margin: 5%;
+				padding: 8px 0;
+				float: left;
+				text-indent: 10px;
+				border-width: 0px;
+				border-radius: 5px;
+			}
+
+			#code {
+				width: 40%;
+				margin: 5%;
+				padding: 8px 0;
+				float: left;
+				text-indent: 10px;
+				border-width: 0px;
+				border-radius: 5px;
+			}
+
+			#button{
+				width: 38%;
+				margin: 5%;
+				padding: 4px 0;
+				float: left;
+				text-indent: 10px;
+				border-width: 0px;
+				border-radius: 5px;
+				background-color: #FF482A;
+				color: #FFF;
+				font-size: 14px;
+			}
+			
+			#txtPwdphone {
+				width: 90%;
+				margin-left: 5%;
+				padding: 8px 0;
+				float: left;
+				text-indent: 10px;
+				border-width: 0px;
+				border-radius: 5px;
+			}
+			
+			#phonecaptcha {
+				float: right;
+				margin-right: 5%;
+				padding: 8px;
+				font-weight: bold;
+				background-color: #FFD40A;
+				color: #C81A16;
+				border-width: 0px;
+				border-radius: 5px;
+			}
+		</style>
+	</head>
+
+	<body style="width: 100%;background:#ff5242">
+		<div style="width: 100%;position: absolute;left: 0px;top: 0px;">
+			<img src="./images/1.png" style="width: 100%;float: left;">
+			<div style="width: 100%;float: left;background-image: url(./images/2.jpg);background-size: 100% 100%;">
+				<div class="content">
+					<div class="wheel">
+						<img id="wheelBg" src="./images/wheel-bg.png" style="width: 110%;height: 110%;position: absolute;left: -5%;top: -5%;">
+						<img id="zhuanpan" src="./images/zhuanpan1.png" style="width: 100%;height: 100%;position: absolute;left: %;top: 0%;">
+						<canvas class="item" id="wheelCanvas" width="422px" height="422px"></canvas>
+						<img class="pointer" src="./images/wheel-pointer.png">
+					</div>
+				</div>
+				<!-- 提示框， 可用作提示已抽奖信息提示 -->
+				<div class="tips">
+					<span id="tip"></span>
+				</div>
+			</div>
+			<div style="clear:both"> </div>
+			<div style="margin-top:10px;width:100%;height: 70px;">
+			<span class="notice" style="text-align:center;font-size:20px;margin:0 auto;display:block;width:78%;height:60px;color:#ffef00;border:2px dashed #ffef00;border-radius: 15px;line-height:60px">活动详情
+			</span>
+			</div>
+			<img src="./images/4_1.jpg" style="width: 100%;float: left;">
+			<div id="nameListDiv" style="height:280px;overflow:hidden;position:relative">
+				<ul  style="height:980px;position:absolute;top:0px">
+					<li>用户 郭*彤 领取了Iphone手机</li>
+					<li class="li2">用户 金*国 领取了8元体验券</li>
+					<li>用户 霍*浪 领取了200元体验券</li>
+					<li class="li2">用户 罗*青 领取了32元体验券</li>
+					<li>用户 马*毅 领取了32元体验券</li>
+					<li class="li2">用户 胡*月 领取了平板电脑</li>
+					<li>用户 潘*仪 领取了80元体验券</li>
+					<li class="li2">用户 王*力 领取了平板电脑</li>
+					<li>用户 冯*平 领取了Iphone手机</li>
+					<li class="li2">用户 虞*品 领取了8元体验券</li>
+					<li>用户 马*斌 领取了32元体验券</li>
+					<li class="li2">用户 庆*中 领取了8元体验券</li>
+					<li>用户 梁*建 领取了80元体验券</li>
+					<li class="li2">用户 梁*厦 领取了平板电脑</li>
+					<li>用户 李*江 领取了领取了200元体验券</li>
+					<li class="li2">用户 虞*品 领取了平板电脑</li>
+					<li>用户 黄*红 领取了8元体验券</li>
+					<li class="li2">用户 冯*健 领取了Iphone手机</li>
+					<li>用户 郭*彤 领取了Iphone手机</li>
+					<li class="li2">用户 金*国 领取了200元体验券</li>
+					<li>用户 霍*浪 领取了80元体验券</li>
+					<li class="li2">用户 罗*青 领取了200元体验券</li>
+					<li>用户 马*毅 领取了80元体验券</li>
+					<li class="li2">用户 胡*月 领取了平板电脑</li>
+					<li>用户 潘*仪 领取了8元体验券</li>
+					<li class="li2">用户 王*力 领取了Iphone手机</li>
+					<li>用户 冯*平 领取了Iphone手机</li>
+					<li class="li2">用户 虞*品 领取了8元体验券</li>
+					<li>用户 马*斌 领取了8元体验券</li>
+					<li class="li2">用户 庆*中 领取了8元体验券</li>
+					<li>用户 梁*建 领取了8元体验券</li>
+					<li class="li2">用户 梁*厦 领取了200元体验券</li>
+					<li>用户 李*江 领取了领取了32元体验券</li>
+					<li class="li2">用户 虞*品 领取了平板电脑</li>
+					<li>用户 黄*红 领取了平板电脑</li>
+					<li class="li2">用户 冯*健 领取了Iphone手机</li>
+					<li>用户 郭*彤 领取了Iphone手机</li>
+					<li class="li2">用户 金*国 领取了8元体验券</li>
+					<li>用户 霍*浪 领取了8元体验券</li>
+					<li class="li2">用户 罗*青 领取了8元体验券/li>
+					<li>用户 马*毅 领取了80元体验券</li>
+					<li class="li2">用户 胡*月 领取了平板电脑</li>
+					<li>用户 潘*仪 领取了80元体验券</li>
+					<li class="li2">用户 王*力 领取了8元体验券</li>
+					<li>用户 冯*平 领取了Iphone手机</li>
+					<li class="li2">用户 虞*品 领取了200元体验券</li>
+					<li>用户 马*斌 领取了8元体验券</li>
+					<li class="li2">用户 庆*中 领取了32元体验券</li>
+					<li>用户 梁*建 领取了8元体验券</li>
+					<li class="li2">用户 梁*厦 领取了8元体验券</li>
+					<li>用户 李*江 领取了领取了200元体验券</li>
+					<li class="li2">用户 虞*品 领取了平板电脑</li>
+					<li>用户 黄*红 领取了平板电脑</li>
+					<li class="li2">用户 冯*健 领取了Iphone手机</li>
+				</ul>
+			</div>
+			<img src="./images/4_3.jpg" style="width: 100%;float: left;">
+			<div style="clear:both"></div>
+			<aside>
+			  <div id="subDiv_01" >
+			  			 <div style="width: 100%;height: 100%; background-color: #111;opacity: 0.7;"></div>
+						    <div class="text-center pull-left" id="regStep1" style="width: 90%;position: absolute;left: 5%;top: 20%; padding:0px 0px;display: block;">
+						    <a id="lingjiang" href='javascript:void()'>	
+							 <img id='bg' src='./images/erweima.png' style='width:100%'>
+							 <img id='bg' src='./images/changan.png' style='width:100%'>
+							 <img id='bg' src='./images/zhuyi.png' style='width:100%'>  
+							</a> 
+						</div>
+              </div>
+              <div id="subDiv_03" style="position: fixed;top:0;background:rgba(0,0,0,0.7);width:100%;height:100%;display: none">
+				    <div class="text-center pull-left" id="regStep1" style="width: 90%;position: absolute;left: 5%;top: 25%; padding:0px 0px;display: block;">
+					 <img id='bg' src='./images/isReg.png' style='width:100%'>
+					</div>
+              </div>
+              <div id="subDiv_04" style="position: fixed;top:0;background:rgba(0,0,0,0.7);width:100%;height:100%;display: none">
+				    <div class="text-center pull-left" id="regStep1" style="width: 90%;position: absolute;left: 5%;top: 25%; padding:0px 0px;display: block;">
+					 <img id='bg' src='./images/notice.png' style='width:100%'>
+					</div>
+              </div>
+			  <div id="subDiv_02" >
+	                <div style="width: 100%;height: 100%; background-color: #111;opacity: 0.7;"></div>
+						<div class="text-center pull-left" id="regStep1" style="width: 90%;position: absolute;left: 5%;top: 20%; padding:0px 0px;display: block;background-color:#fff">
+<!-- 						<a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx61503f85099dee83&redirect_uri=http%3A%2F%2Fcon.pmec.com%2Fweipan04%2Foauth2Servlet&response_type=code&scope=snsapi_userinfo&state=617#wechat_redirect" >	
+					    <img id="bg" src="./images/<?php $item=$item?$item:$reid; switch ($item) {
+					    	case '1':
+					    		echo 200;
+					    		break;
+					    	case '3':
+					    		echo 80;
+					    		break;
+					    	case '4':
+					    		echo 8;
+					    		break;
+					    	case '5':
+					    		echo 32;
+					    		break;
+					    	
+					    } ?>.png" style="width:100%;float: left;margin-top: 12%;">
+					    </a> -->
+					</div>
+			  </div>
+			</aside>
+			<input type="hidden" id="data-value" value="{$open_id}" />
+			<input type="hidden" id="data-item" value="{$item}" />
+		</div>
+		<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+		<script src="./js/jQueryRotate.js"></script>
+		<script type="text/javascript">
+		    setInterval(function() {
+		    	var topval = $('#nameListDiv').children('ul').position().top; 
+		        if(topval<='-800'){
+		        	   $('#nameListDiv').children('ul').attr('style','height:980px;position:absolute;top:0px');
+		          }else{
+		          	   $('#nameListDiv').children('ul').animate({top:topval-1+'px'},1);
+		         }
+			},30);
+
+			setInterval(function() {
+				if ($("#wheelBg").attr("src") == "./images/wheel-bg.png") {
+					$("#wheelBg").attr("src", "./images/wheel-bg2.png");
+				} else {
+					$("#wheelBg").attr("src", "./images/wheel-bg.png");
+				}
+			}, 700)
+
+			$("#wheelCanvas").css({"background":"url(./images/zhuanpan1.png) no-repeat","background-size":"100% 100%"});
+
+			$(".notice").click(function(){
+				$("#subDiv_04").show();
+			});
+
+			$("#subDiv_04").click(function(){
+				$(this).fadeOut(1000);
+			})
+
+		</script>
+
+		<script type="text/javascript">
+		    $(document).ready(function(){
+		    	var turnWheel = {
+				    rewardNames:[],				//转盘奖品名称数组
+				    // colors:[],					//转盘奖品区块对应背景颜色
+				    // outsideRadius:182,			//转盘外圆的半径
+				    // textRadius:135,				//转盘奖品位置距离圆心的距离
+				    // insideRadius:0,			    //转盘内圆的半径
+				    // startAngle:0,				//开始角度
+
+				    bRotate:false				//false:停止;ture:旋转
+				};
+		    	//转盘奖品, 数组形式
+			    turnWheel.rewardNames = [
+			        "感谢参与  THINKS","20万体验金",
+			        "50万体验金","独家秘笈",
+			        "免费1V1 指导","50元话费"];
+			    // turnWheel.colors = [
+			    //     "#FBED8D","#FACA00",
+			    //     "#FBED8D","#FACA00",
+			    //     "#FBED8D","#FACA00"];
+
+			    //旋转转盘 item:奖品序号，从0开始的; txt：提示语 ,count 奖品的总数量;
+			    var rotateFunc = function (item, tip,count){
+
+			        // 应该旋转的角度，旋转插件角度参数是角度制。
+			        var baseAngle = 360 / count;
+			        // 旋转角度 == 270°（当前第一个角度和指针位置的偏移量） - 奖品的位置 * 每块所占的角度 - 每块所占的角度的一半(指针指向区域的中间)
+			        angles = 360 * 3 / 4 - ( item * baseAngle) - baseAngle / 2; // 因为第一个奖品是从0°开始的，即水平向右方向
+			        $('#wheelCanvas').stopRotate();
+			        // 注意，jqueryrotate 插件传递的角度不是弧度制。
+			        // 哪个标签调用方法，旋转哪个控件
+			        $('#wheelCanvas').rotate({
+			            angle:0,
+			            animateTo:angles + 360 * 5, // 这里多旋转了5圈，圈数越多，转的越快
+			            duration:8000,
+			            callback:function (){ // 回调方法
+			                $("#subDiv_02").show();
+			                /*turnWheel.bRotate = !turnWheel.bRotate;
+			                if(isMobile.any()) // 判断是否移动设备
+			                {
+			                    // 调OC代码
+			                    window.location.href = "turntable://test.com?"+ "index=" + item +"&tip=" + tip ;
+			                }*/
+			            }
+			        });
+			    };
+
+			    //抽取按钮按钮点击触发事件
+			    $('.pointer').on("click", function(){
+			        // 正在转动，直接返回
+			        var count = turnWheel.rewardNames.length;
+			        item = randomNum(0,count - 1);
+			        // item = <?php echo $item?$item:1 ?> ;
+			        if(turnWheel.bRotate) return;
+			        turnWheel.bRotate = !turnWheel.bRotate;
+			        // 开始抽奖
+			        rotateFunc(item, turnWheel.rewardNames[item],count);
+			    });
+                
+
+			});
+
+			function randomNum(n, m){
+			    /* Math.floor(Math.random()*10);时，可均衡获取0到9的随机整数。 */
+			    var random = Math.floor(Math.random()*(m-n)) + n;
+			    return random;
+
+			}
+		</script>
+
+	</body>
+
+</html>

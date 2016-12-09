@@ -1,0 +1,101 @@
+/*閸掓繂顫愰崠鏍ㄧ壉瀵拷*/
+
+body,
+ul,
+ol,
+li,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+fieldset,
+table,
+td,
+img,
+div {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+ul,
+ol {
+	list-style-type: none;
+}
+
+select,
+input,
+img,
+select {
+	vertical-align: middle;
+}
+
+a {
+	text-decoration: none;
+	color: #000;
+}
+
+a:hover {
+	color: #c00;
+	text-decoration: none;
+}
+
+.clear {
+	clear: both;
+}
+
+input {
+	font-size: 12px;
+}
+
+html {
+	font-size: 62.5%;
+	/*10 姊 16 鑴 100% = 62.5%*/
+}
+
+body {
+	font-family: 'Microsoft YaHei', '姒涙垳缍';
+	background-color: #88000F;
+	overflow-x: hidden;
+	/*1.4 鑴 10px = 14px */
+	letter-spacing: .1rem;
+}
+
+.content {
+	width: 80%;
+	margin: 30px 10%;
+	display: block;
+	float: left;
+}
+
+.content .wheel {
+	display: block;
+	width: 100%;
+	position: relative;
+	/*鏉烆剛娲忛惃鍕剹閺咃拷*/
+	/*background-image:url(../images/wheel-bg.png);
+    background-size:100% 100%;*/
+}
+
+.content .wheel canvas.item {
+	width: 100%;
+}
+
+.content .wheel img.pointer {
+	position: absolute;
+	width: 23%;
+	height: 30%;
+	left: 39%;
+	top: 33%;
+}
+
+.tips {
+	text-align: center;
+	margin: 20px 0;
+	font: normal 24px 'MicroSoft YaHei';
+	display: none;
+}
